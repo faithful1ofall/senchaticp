@@ -3,7 +3,7 @@ import Blob "mo:base/Blob";
 import Text "mo:base/Text";
 import Principal "mo:base/Principal";
 
-actor Senceh {
+actor Senchat {
     type TokenData = { tokenId : Nat; tokenURI : Text };
 
     type ERC721Metadata = { name : Text; symbol : Text };
@@ -24,11 +24,11 @@ actor Senceh {
         mintFee : Nat;
     };
 
-    public shared({name, symbol} : ERC721Metadata, initialOwner : Principal, mintFee : Nat) : async Senceh {
+    public shared({name, symbol} : ERC721Metadata, initialOwner : Principal, mintFee : Nat) : async Senchat {
         let tokens = Trie.empty<TokenData>();
         let balances = Trie.empty<Nat>();
         let storage = { tokens = tokens; balances = balances; mintFee = mintFee };
-        Senceh { metadata = { name = name; symbol = symbol }; owner = initialOwner; storage = storage }
+        Senchat { metadata = { name = name; symbol = symbol }; owner = initialOwner; storage = storage }
     };
 
     public func mintFee() : async Nat {
